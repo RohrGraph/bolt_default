@@ -1,81 +1,25 @@
-import { Car, Phone, Mail, MapPin, Clock, Users, Award, Star, CheckCircle, Calendar, BookOpen, MessageCircle, Instagram, Facebook, Menu, X, Bike, Zap } from 'lucide-react';
+import { Car, Phone, Mail, MapPin, Clock, Users, Award, Star, CheckCircle, Calendar, BookOpen, MessageCircle, Instagram, Facebook, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeVehicleType, setActiveVehicleType] = useState<'car' | 'motorcycle'>('car');
+  const [activeLocation, setActiveLocation] = useState(0);
 
-  const carVehicles = [
-    {
-      name: 'VW Golf 8',
-      type: 'Schaltgetriebe',
-      classes: 'Klasse B',
-      icon: Car
-    },
-    {
-      name: 'VW ID4 GTX',
-      type: 'Automatikgetriebe',
-      classes: 'Klasse B197',
-      icon: Zap
-    }
-  ];
-
-  const motorcycleVehicles = [
-    {
-      name: 'KTM Duke 790',
-      type: 'Klasse A',
-      description: 'Für den offenen Motorradführerschein'
-    },
-    {
-      name: 'KTM Duke 390',
-      type: 'Klasse A2',
-      description: 'Perfekt für Einsteiger'
-    },
-    {
-      name: 'KTM Duke 125',
-      type: 'Klasse A1 & B196',
-      description: 'Ideal für junge Fahrer'
-    }
-  ];
-
-  const licenseClasses = [
-    {
-      class: 'B / BE',
-      title: 'PKW-Führerschein',
-      description: 'Der klassische Autoführerschein für PKW und leichte Anhänger',
-      icon: Car
-    },
-    {
-      class: 'A / A2 / A1',
-      title: 'Motorrad-Führerschein',
-      description: 'Alle Motorradklassen von 125ccm bis zur offenen Klasse',
-      icon: Bike
-    },
-    {
-      class: 'AM',
-      title: 'Roller & Moped',
-      description: 'Für Kleinkrafträder und leichte Zweiräder',
-      icon: Bike
-    },
-    {
-      class: 'B196',
-      title: '125ccm Erweiterung',
-      description: 'Motorräder bis 125ccm mit bestehendem PKW-Führerschein',
-      icon: Bike
-    },
-    {
-      class: 'B197',
-      title: 'Automatik-Ausbildung',
-      description: 'PKW-Führerschein mit Automatikgetriebe',
-      icon: Zap
-    }
+  const locations = [
+    { name: 'Kreuzau', address: 'Stockheimer Weg 2', phone: '02422-1234' },
+    { name: 'Düren/Niederau', address: 'Kreuzauer Str. 64', phone: '02421-5678' },
+    { name: 'Düren', address: 'Weierstraße 19', phone: '02421-9012' },
+    { name: 'Nideggen', address: 'Abendener Straße 2', phone: '02427-3456' },
+    { name: 'MPU Büro Kreuzau', address: 'Bahnhofstr. 12', phone: '02422-7890' }
   ];
 
   const services = [
-    { icon: BookOpen, title: 'Theorieunterricht', description: 'Montag, Mittwoch, Donnerstag 18:30-20:00 Uhr und Freitag 10:00-11:30 Uhr' },
-    { icon: Car, title: 'Praktische Ausbildung', description: 'Moderne Fahrzeuge und erfahrene Fahrlehrer' },
-    { icon: Users, title: 'Aufbauseminare', description: 'Seminare für Fahranfänger zur Vertiefung' },
-    { icon: CheckCircle, title: 'Behördengänge', description: 'Wir kümmern uns um die Bürokratie bei der Zulassung' }
+    { icon: BookOpen, title: 'Theorieunterricht', description: 'Multimedia, computeranimierter Unterricht bis zu 10x pro Woche' },
+    { icon: Car, title: 'Fahrstunden', description: 'Praktische Ausbildung mit erfahrenen Fahrlehrern' },
+    { icon: Calendar, title: 'Intensivkurse', description: 'Führerschein in nur 10 Tagen möglich' },
+    { icon: Users, title: 'MPU-Vorbereitung', description: 'Professionelle Betreuung und Vorbereitung' },
+    { icon: CheckCircle, title: 'Erste Hilfe Kurs', description: 'Alle wichtigen Grundlagen kompakt vermittelt' },
+    { icon: Star, title: 'Probefahrt gratis', description: 'Unverbindliche Schnupperstunde für Neukunden' }
   ];
 
   return (
@@ -90,17 +34,18 @@ function App() {
                 <Car className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Eric's Fahrschule</h1>
-                <p className="text-xs text-gray-600">Aachen</p>
+                <h1 className="text-xl font-bold text-gray-900">Fahrschule Jacobs</h1>
+                <p className="text-xs text-gray-600">Seit 1987</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <a href="#start" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Startseite</a>
-              <a href="#ueber-uns" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Über uns</a>
-              <a href="#fahrzeuge" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Ausbildungsfahrzeuge</a>
-              <a href="#seminare" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Aufbauseminare</a>
+              <a href="#theorie" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Theorie & Zeiten</a>
+              <a href="#filialen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Filialen</a>
+              <a href="#team" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Team</a>
+              <a href="#leistungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Leistungen</a>
+              <a href="#bewertungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Bewertungen</a>
               <a href="#kontakt" className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
                 Kontakt
               </a>
@@ -119,10 +64,11 @@ function App() {
           {mobileMenuOpen && (
             <nav className="lg:hidden py-4 border-t border-gray-100">
               <div className="flex flex-col space-y-3">
-                <a href="#start" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Startseite</a>
-                <a href="#ueber-uns" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Über uns</a>
-                <a href="#fahrzeuge" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Ausbildungsfahrzeuge</a>
-                <a href="#seminare" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Aufbauseminare</a>
+                <a href="#theorie" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Theorie & Zeiten</a>
+                <a href="#filialen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Filialen</a>
+                <a href="#team" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Team</a>
+                <a href="#leistungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Leistungen</a>
+                <a href="#bewertungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Bewertungen</a>
                 <a href="#kontakt" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Kontakt</a>
               </div>
             </nav>
@@ -131,21 +77,21 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section id="start" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-white to-red-50">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-white to-red-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
                 <Award className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-semibold text-orange-900">Professionelle Fahrausbildung</span>
+                <span className="text-sm font-semibold text-orange-900">38 Jahre Erfahrung</span>
               </div>
 
               <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                Dein Führerschein in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Aachen</span>
+                Führerschein machen – <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">gut, schnell, easy</span>
               </h2>
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Bei Eric's Fahrschule bekommst du eine erstklassige Ausbildung mit modernen Fahrzeugen. Von PKW bis Motorrad – wir machen dich fit für die Straße.
+                Bei Fahrschule Jacobs bringen wir dich sicher und entspannt zum Führerschein. Mit 5 Standorten im Kreis Düren und über 18.976 erfolgreichen Fahrschülern.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
@@ -153,28 +99,28 @@ function App() {
                   <span>Jetzt anmelden</span>
                   <CheckCircle className="w-5 h-5" />
                 </a>
-                <a href="#fahrzeuge" className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold border-2 border-gray-200 hover:border-orange-500 hover:shadow-lg transform hover:scale-105 transition-all duration-200">
-                  Unsere Fahrzeuge
+                <a href="#probefahrt" className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold border-2 border-gray-200 hover:border-orange-500 hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                  Gratis Probefahrt
                 </a>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3">
                   <div className="bg-orange-100 p-3 rounded-lg">
-                    <Car className="w-6 h-6 text-orange-600" />
+                    <Users className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">B / BE</div>
-                    <div className="text-sm text-gray-600">PKW-Führerschein</div>
+                    <div className="text-2xl font-bold text-gray-900">18.976</div>
+                    <div className="text-sm text-gray-600">Erfolgreiche Schüler</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="bg-orange-100 p-3 rounded-lg">
-                    <Bike className="w-6 h-6 text-orange-600" />
+                    <MapPin className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">A / A2 / A1</div>
-                    <div className="text-sm text-gray-600">Motorrad</div>
+                    <div className="text-2xl font-bold text-gray-900">5</div>
+                    <div className="text-sm text-gray-600">Standorte</div>
                   </div>
                 </div>
               </div>
@@ -183,27 +129,25 @@ function App() {
             <div className="relative">
               <div className="relative bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl p-8 shadow-2xl">
                 <div className="bg-white rounded-2xl p-8">
-                  <Clock className="w-20 h-20 text-orange-600 mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Öffnungszeiten</h3>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 font-medium">Mo - Do</span>
-                      <span className="text-gray-600">10:00 - 12:30<br/>15:30 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 font-medium">Freitag</span>
-                      <span className="text-gray-600">15:30 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 font-medium">Sa & So</span>
-                      <span className="text-gray-600">Geschlossen</span>
-                    </div>
-                  </div>
-                  <div className="border-t pt-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Theorie-Zeiten</h4>
-                    <p className="text-sm text-gray-600">Mo, Mi, Do: 18:30 - 20:00 Uhr</p>
-                    <p className="text-sm text-gray-600">Freitag: 10:00 - 11:30 Uhr</p>
-                  </div>
+                  <Car className="w-20 h-20 text-orange-600 mb-6" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Intensivkurs verfügbar!</h3>
+                  <p className="text-gray-600 mb-6">
+                    Mach deinen Führerschein in nur 10 Tagen. Perfekt für alle, die es eilig haben.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">Bis zu 10 Theoriestunden pro Woche</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">Flexible Fahrstunden</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">Erfahrene Fahrlehrer</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-yellow-400 rounded-2xl p-6 shadow-xl transform rotate-3">
@@ -214,145 +158,212 @@ function App() {
         </div>
       </section>
 
-      {/* License Classes Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Führerscheinklassen</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Wir bieten Ausbildung für alle gängigen Führerscheinklassen
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {licenseClasses.map((license, index) => (
-              <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-100 hover:border-orange-500 hover:shadow-xl transition-all duration-300 group">
-                <div className="bg-gradient-to-br from-orange-500 to-red-600 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <license.icon className="w-7 h-7 text-white" />
-                </div>
-                <div className="text-orange-600 font-bold text-sm mb-2">{license.class}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{license.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{license.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vehicles Section */}
-      <section id="fahrzeuge" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Unsere Ausbildungsfahrzeuge</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Modern, sicher und perfekt für deine Ausbildung
-            </p>
-          </div>
-
-          <div className="flex justify-center gap-4 mb-12">
-            <button
-              onClick={() => setActiveVehicleType('car')}
-              className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 inline-flex items-center space-x-2 ${
-                activeVehicleType === 'car'
-                  ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-orange-500'
-              }`}
-            >
-              <Car className="w-5 h-5" />
-              <span>PKW</span>
-            </button>
-            <button
-              onClick={() => setActiveVehicleType('motorcycle')}
-              className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 inline-flex items-center space-x-2 ${
-                activeVehicleType === 'motorcycle'
-                  ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-orange-500'
-              }`}
-            >
-              <Bike className="w-5 h-5" />
-              <span>Motorräder</span>
-            </button>
-          </div>
-
-          {activeVehicleType === 'car' ? (
-            <div className="grid md:grid-cols-2 gap-8">
-              {carVehicles.map((vehicle, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                  <div className="bg-gradient-to-br from-orange-500 to-red-600 h-48 flex items-center justify-center">
-                    <vehicle.icon className="w-32 h-32 text-white/80" />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{vehicle.name}</h3>
-                    <p className="text-orange-600 font-semibold mb-3">{vehicle.type}</p>
-                    <div className="bg-orange-50 px-4 py-2 rounded-lg inline-block">
-                      <span className="text-sm font-semibold text-orange-900">{vehicle.classes}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8">
-              {motorcycleVehicles.map((vehicle, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                  <div className="bg-gradient-to-br from-orange-500 to-red-600 h-48 flex items-center justify-center">
-                    <Bike className="w-24 h-24 text-white/80" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{vehicle.name}</h3>
-                    <p className="text-orange-600 font-semibold mb-3">{vehicle.type}</p>
-                    <p className="text-gray-600 text-sm">{vehicle.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
       {/* Services Section */}
-      <section id="ueber-uns" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="leistungen" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Unsere Leistungen</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Alles für deinen Führerschein – von Theorie bis Praxis
+              Von Theorie bis Praxis – wir begleiten dich auf deinem Weg zum Führerschein
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-100 hover:border-orange-500 hover:shadow-xl transition-all duration-300 group">
                 <div className="bg-gradient-to-br from-orange-500 to-red-600 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm">{service.description}</p>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Seminars Section */}
-      <section id="seminare" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-white to-red-50">
+      {/* Locations Section */}
+      <section id="filialen" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Unsere Filialen</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              5 Standorte im Kreis Düren – immer in deiner Nähe
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className="flex flex-wrap gap-3 mb-8">
+                {locations.map((location, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveLocation(index)}
+                    className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                      activeLocation === index
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {location.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Adresse</h4>
+                    <p className="text-gray-600">{locations[activeLocation].address}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
+                    <Phone className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Telefon</h4>
+                    <p className="text-gray-600">{locations[activeLocation].phone}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
+                    <Clock className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Theorie-Zeiten</h4>
+                    <p className="text-gray-600">Bis zu 10x pro Woche verfügbar</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-lg p-8 text-white">
+              <h3 className="text-2xl font-bold mb-6">Theoriethemen & Öffnungszeiten</h3>
+              <div className="space-y-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Multimedia-Unterricht</h4>
+                  <p className="text-white/90 text-sm">Computeranimiert und interaktiv für schnelleres Lernen</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Flexible Zeiten</h4>
+                  <p className="text-white/90 text-sm">Bis zu 10 Theoriestunden pro Woche – passend zu deinem Zeitplan</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Alle Themen</h4>
+                  <p className="text-white/90 text-sm">Komplette Theorie-Ausbildung nach aktuellen Richtlinien</p>
+                </div>
+              </div>
+              <a href="#theorie" className="mt-6 inline-flex items-center space-x-2 bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <span>Mehr erfahren</span>
+                <BookOpen className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="bewertungen" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-8 h-8 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Das sagen unsere Fahrschüler</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Über 18.976 erfolgreiche Absolventen vertrauen uns
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: 'Sarah M.', text: 'Super Fahrschule! Die Lehrer sind geduldig und erklären alles sehr gut. Habe meinen Führerschein beim ersten Mal geschafft!' },
+              { name: 'Tim K.', text: 'Der Intensivkurs war perfekt für mich. In 10 Tagen zum Führerschein – das hat wirklich funktioniert. Sehr empfehlenswert!' },
+              { name: 'Lisa B.', text: 'Tolle Atmosphäre und moderne Unterrichtsmethoden. Die Theorie-Stunden mit den Animationen machen richtig Spaß.' }
+            ].map((review, index) => (
+              <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-100 hover:border-orange-500 hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-6 leading-relaxed">"{review.text}"</p>
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gradient-to-br from-orange-500 to-red-600 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{review.name}</div>
+                    <div className="text-sm text-gray-600">Verifizierter Fahrschüler</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <a href="#gaestebuch" className="inline-flex items-center space-x-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors">
+              <MessageCircle className="w-5 h-5" />
+              <span>Alle Bewertungen ansehen</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-white to-red-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Unser Team</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Erfahrene Fahrlehrer mit Herz und Expertise
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {['Hauptfahrlehrer', 'Fahrlehrer', 'Fahrlehrer', 'Fahrlehrer'].map((role, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-orange-500 to-red-600 h-48 flex items-center justify-center">
+                  <Users className="w-24 h-24 text-white/80" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Team Mitglied {index + 1}</h3>
+                  <p className="text-orange-600 font-semibold mb-3">{role}</p>
+                  <p className="text-gray-600 text-sm">Erfahren, professionell und mit Leidenschaft dabei</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MPU Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
-                <Users className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-semibold text-orange-900">Für Fahranfänger</span>
+                <Award className="w-4 h-4 text-orange-600" />
+                <span className="text-sm font-semibold text-orange-900">MPU-Beratung</span>
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Aufbauseminare</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">MPU-Vorbereitung</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Spezielle Seminare für Fahranfänger zur Vertiefung und Verbesserung der Fahrkompetenz. Professionelle Betreuung in kleinen Gruppen.
+                Professionelle Unterstützung und individuelle Betreuung auf dem Weg zurück zum Führerschein. Unser erfahrenes Team bereitet dich optimal auf die MPU vor.
               </p>
               <ul className="space-y-4 mb-8">
                 {[
-                  'Vertiefung der Fahrkompetenz',
-                  'Gefahrensituationen meistern',
-                  'Sicheres Fahren im Alltag',
-                  'Kleine Gruppen für intensive Betreuung'
+                  'Einzelberatung und Gruppensitzungen',
+                  'Erfahrene MPU-Berater',
+                  'Individuelle Vorbereitung',
+                  'Hohe Erfolgsquote'
                 ].map((item, index) => (
                   <li key={index} className="flex items-center space-x-3">
                     <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
@@ -361,30 +372,78 @@ function App() {
                 ))}
               </ul>
               <a href="#kontakt" className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-                <span>Mehr erfahren</span>
-                <BookOpen className="w-5 h-5" />
+                <span>Beratungstermin vereinbaren</span>
+                <Calendar className="w-5 h-5" />
               </a>
             </div>
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Weitere Services</h3>
+            <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">MPU Büro Kreuzau</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-                    <CheckCircle className="w-6 h-6 text-orange-600" />
+                    <MapPin className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Behördengänge</h4>
-                    <p className="text-gray-600 text-sm">Wir kümmern uns um die komplette Bürokratie bei der Fahrzeugzulassung und allen notwendigen Anträgen.</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">Adresse</h4>
+                    <p className="text-gray-600">Bahnhofstr. 12, Kreuzau</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-                    <Calendar className="w-6 h-6 text-orange-600" />
+                    <Phone className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Flexible Termine</h4>
-                    <p className="text-gray-600 text-sm">Fahrstunden zu den Zeiten, die zu deinem Leben passen – auch am Wochenende möglich.</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">Kontakt</h4>
+                    <p className="text-gray-600">02422-7890</p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* First Aid Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-xl p-12 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Erste Hilfe Kurs</h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Pflichtprogramm für den Führerschein – bei uns lernst du alle wichtigen Grundlagen kompakt und praxisnah.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {[
+                  'Kompakter Tageskurs',
+                  'Qualifizierte Ausbilder',
+                  'Praktische Übungen',
+                  'Bescheinigung direkt am Ende'
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-700 text-lg">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#kontakt" className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <span>Zum Kurs anmelden</span>
+                <Calendar className="w-5 h-5" />
+              </a>
+            </div>
+            <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-6">Kursinformationen</h3>
+              <div className="space-y-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Dauer</h4>
+                  <p className="text-white/90">Ein Tagesworkshop</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Inhalte</h4>
+                  <p className="text-white/90">Reanimation, Verbände, Notruf und mehr</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <h4 className="font-semibold mb-2">Gültigkeit</h4>
+                  <p className="text-white/90">Lebenslang für Führerschein-Antrag</p>
                 </div>
               </div>
             </div>
@@ -396,9 +455,9 @@ function App() {
       <section id="kontakt" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Kontakt</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Kontaktiere uns</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Komm vorbei oder kontaktiere uns – wir freuen uns auf dich!
+              Starte jetzt deine Fahrausbildung – wir freuen uns auf dich!
             </p>
           </div>
 
@@ -453,20 +512,11 @@ function App() {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Adresse</h4>
-                      <p className="text-gray-600">Seilgraben 31, Aachen</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
                       <Phone className="w-6 h-6 text-orange-600" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Telefon</h4>
-                      <p className="text-gray-600">024194303500</p>
+                      <p className="text-gray-600">Rufe deine nächste Filiale an</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -475,18 +525,16 @@ function App() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">E-Mail</h4>
-                      <p className="text-gray-600">info@ericsfahrschule.de</p>
+                      <p className="text-gray-600">info@fahrschule-jacobs.de</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-                      <Clock className="w-6 h-6 text-orange-600" />
+                      <MapPin className="w-6 h-6 text-orange-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Öffnungszeiten</h4>
-                      <p className="text-gray-600 text-sm">Mo-Do: 10:00-12:30, 15:30-18:00</p>
-                      <p className="text-gray-600 text-sm">Fr: 15:30-18:00</p>
-                      <p className="text-gray-600 text-sm">Sa-So: Geschlossen</p>
+                      <h4 className="font-semibold text-gray-900 mb-1">Standorte</h4>
+                      <p className="text-gray-600">5 Filialen im Kreis Düren</p>
                     </div>
                   </div>
                 </div>
@@ -496,7 +544,7 @@ function App() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Social Media</h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://www.facebook.com/ericsfahrschule"
+                    href="https://www.facebook.com/fahrschule.jacobs"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-xl hover:shadow-xl transform hover:scale-110 transition-all duration-200"
@@ -504,25 +552,31 @@ function App() {
                     <Facebook className="w-6 h-6" />
                   </a>
                   <a
-                    href="https://www.instagram.com/ericsfahrschule"
+                    href="https://www.instagram.com/fahrschule_jacobs"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-xl hover:shadow-xl transform hover:scale-110 transition-all duration-200"
                   >
                     <Instagram className="w-6 h-6" />
                   </a>
-                  <a
-                    href="https://www.tiktok.com/@ericsfahrschule"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-xl hover:shadow-xl transform hover:scale-110 transition-all duration-200"
-                  >
-                    <MessageCircle className="w-6 h-6" />
-                  </a>
                 </div>
                 <p className="text-gray-600 mt-4">
                   Folge uns für News, Tipps und Updates!
                 </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl border-2 border-green-100">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Gratis Probefahrt sichern!</h3>
+                <p className="text-gray-600 mb-4">
+                  Teste uns unverbindlich und erlebe die Fahrschule Jacobs live.
+                </p>
+                <a
+                  href="#kontakt"
+                  className="inline-flex items-center space-x-2 px-6 py-3 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transform hover:scale-105 transition-all duration-200"
+                >
+                  <span>Jetzt Termin buchen</span>
+                  <CheckCircle className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -539,32 +593,32 @@ function App() {
                   <Car className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Eric's Fahrschule</h3>
-                  <p className="text-sm text-gray-400">Aachen</p>
+                  <h3 className="font-bold text-lg">Fahrschule Jacobs</h3>
+                  <p className="text-sm text-gray-400">Seit 1987</p>
                 </div>
               </div>
               <p className="text-gray-400 text-sm">
-                Professionelle Fahrausbildung für PKW und Motorrad.
+                Deine Fahrschule im Kreis Düren – gut, schnell, easy zum Führerschein.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Navigation</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#start" className="hover:text-orange-500 transition-colors">Startseite</a></li>
-                <li><a href="#ueber-uns" className="hover:text-orange-500 transition-colors">Über uns</a></li>
-                <li><a href="#fahrzeuge" className="hover:text-orange-500 transition-colors">Ausbildungsfahrzeuge</a></li>
-                <li><a href="#seminare" className="hover:text-orange-500 transition-colors">Aufbauseminare</a></li>
+                <li><a href="#theorie" className="hover:text-orange-500 transition-colors">Theorie & Zeiten</a></li>
+                <li><a href="#filialen" className="hover:text-orange-500 transition-colors">Filialen</a></li>
+                <li><a href="#team" className="hover:text-orange-500 transition-colors">Team</a></li>
+                <li><a href="#leistungen" className="hover:text-orange-500 transition-colors">Leistungen</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Führerscheinklassen</h4>
+              <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#fahrzeuge" className="hover:text-orange-500 transition-colors">Klasse B / BE</a></li>
-                <li><a href="#fahrzeuge" className="hover:text-orange-500 transition-colors">Klasse A / A2 / A1</a></li>
-                <li><a href="#fahrzeuge" className="hover:text-orange-500 transition-colors">Klasse AM</a></li>
-                <li><a href="#fahrzeuge" className="hover:text-orange-500 transition-colors">B196 & B197</a></li>
+                <li><a href="#bewertungen" className="hover:text-orange-500 transition-colors">Bewertungen</a></li>
+                <li><a href="#gaestebuch" className="hover:text-orange-500 transition-colors">Gästebuch</a></li>
+                <li><a href="#mpu" className="hover:text-orange-500 transition-colors">MPU-Vorbereitung</a></li>
+                <li><a href="#erstehilfe" className="hover:text-orange-500 transition-colors">Erste Hilfe Kurs</a></li>
               </ul>
             </div>
 
@@ -572,7 +626,7 @@ function App() {
               <h4 className="font-semibold mb-4">Folge uns</h4>
               <div className="flex space-x-3 mb-4">
                 <a
-                  href="https://www.facebook.com/ericsfahrschule"
+                  href="https://www.facebook.com/fahrschule.jacobs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white/10 p-2 rounded-lg hover:bg-orange-500 transition-colors"
@@ -580,30 +634,22 @@ function App() {
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://www.instagram.com/ericsfahrschule"
+                  href="https://www.instagram.com/fahrschule_jacobs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white/10 p-2 rounded-lg hover:bg-orange-500 transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a
-                  href="https://www.tiktok.com/@ericsfahrschule"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/10 p-2 rounded-lg hover:bg-orange-500 transition-colors"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                </a>
               </div>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>© 2024 Eric's Fahrschule. Alle Rechte vorbehalten.</p>
+            <p>© 2024 Fahrschule Jacobs. Alle Rechte vorbehalten.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#impressum" className="hover:text-orange-500 transition-colors">Impressum</a>
-              <a href="#datenschutz" className="hover:text-orange-500 transition-colors">Datenschutzerklärung</a>
+              <a href="#datenschutz" className="hover:text-orange-500 transition-colors">Datenschutz</a>
             </div>
           </div>
         </div>
