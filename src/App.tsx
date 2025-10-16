@@ -6,20 +6,17 @@ function App() {
   const [activeLocation, setActiveLocation] = useState(0);
 
   const locations = [
-    { name: 'Kreuzau', address: 'Stockheimer Weg 2', phone: '02422-1234' },
-    { name: 'Düren/Niederau', address: 'Kreuzauer Str. 64', phone: '02421-5678' },
-    { name: 'Düren', address: 'Weierstraße 19', phone: '02421-9012' },
-    { name: 'Nideggen', address: 'Abendener Straße 2', phone: '02427-3456' },
-    { name: 'MPU Büro Kreuzau', address: 'Bahnhofstr. 12', phone: '02422-7890' }
+    { name: 'Schmidtheim', address: 'Im Driesch 1, 53949 Schmidtheim', phone: '0170-2020617' },
+    { name: 'Schleiden / Gemünd', address: 'Dreiborner Straße 41, 53937 Schleiden / Gemünd', phone: '0170-4702062' }
   ];
 
   const services = [
-    { icon: BookOpen, title: 'Theorieunterricht', description: 'Multimedia, computeranimierter Unterricht bis zu 10x pro Woche' },
-    { icon: Car, title: 'Fahrstunden', description: 'Praktische Ausbildung mit erfahrenen Fahrlehrern' },
-    { icon: Calendar, title: 'Intensivkurse', description: 'Führerschein in nur 10 Tagen möglich' },
-    { icon: Users, title: 'MPU-Vorbereitung', description: 'Professionelle Betreuung und Vorbereitung' },
-    { icon: CheckCircle, title: 'Erste Hilfe Kurs', description: 'Alle wichtigen Grundlagen kompakt vermittelt' },
-    { icon: Star, title: 'Probefahrt gratis', description: 'Unverbindliche Schnupperstunde für Neukunden' }
+    { icon: Car, title: 'Autoführerschein', description: 'Wage den ersten Schritt zur Eigenständigkeit mit dem bestehen deines Führerscheins der Klasse B' },
+    { icon: BookOpen, title: 'Fahrschule', description: 'Mit viel Einfühlungsvermögen und Geduld bereiten wir euch auf eure theoretische und praktische Prüfung vor' },
+    { icon: Users, title: 'Weiterbildungen', description: 'BKF Weiterbildung, Beschleunigte Grundqualifikation und Erste-Hilfe-Kurs' },
+    { icon: Calendar, title: 'Anmeldung', description: 'Einfach anmelden und loslegen! Wir freuen uns auf Sie!' },
+    { icon: CheckCircle, title: 'Erste Hilfe Kurs', description: 'Leben retten! Nicht nur Pflicht zum erhalten der Führerscheine' },
+    { icon: MapPin, title: 'Standorte', description: 'Schmidtheim und Schleiden / Gemünd' }
   ];
 
   return (
@@ -34,20 +31,20 @@ function App() {
                 <Car className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Fahrschule Jacobs</h1>
-                <p className="text-xs text-gray-600">Seit 1987</p>
+                <h1 className="text-xl font-bold text-gray-900">Uni Drive</h1>
+                <p className="text-xs text-gray-600">Die Fahrschule</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <a href="#theorie" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Theorie & Zeiten</a>
-              <a href="#filialen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Filialen</a>
-              <a href="#team" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Team</a>
-              <a href="#leistungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Leistungen</a>
-              <a href="#bewertungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">Bewertungen</a>
-              <a href="#kontakt" className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
-                Kontakt
+              <a href="#start" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">START</a>
+              <a href="#fahrschule" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">FAHRSCHULE</a>
+              <a href="#weiterbildungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">WEITERBILDUNGEN</a>
+              <a href="#anmeldung" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">ANMELDUNG</a>
+              <a href="#fuhrpark" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors">FUHRPARK</a>
+              <a href="#shop" className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                SHOP
               </a>
             </nav>
 
@@ -64,12 +61,13 @@ function App() {
           {mobileMenuOpen && (
             <nav className="lg:hidden py-4 border-t border-gray-100">
               <div className="flex flex-col space-y-3">
-                <a href="#theorie" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Theorie & Zeiten</a>
-                <a href="#filialen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Filialen</a>
-                <a href="#team" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Team</a>
-                <a href="#leistungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Leistungen</a>
-                <a href="#bewertungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Bewertungen</a>
-                <a href="#kontakt" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">Kontakt</a>
+                <a href="#start" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">START</a>
+                <a href="#fahrschule" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">FAHRSCHULE</a>
+                <a href="#weiterbildungen" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">WEITERBILDUNGEN</a>
+                <a href="#anmeldung" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">ANMELDUNG</a>
+                <a href="#fuhrpark" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">FUHRPARK</a>
+                <a href="#shop" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">SHOP</a>
+                <a href="#impressum" className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors py-2">IMPRESSUM</a>
               </div>
             </nav>
           )}
@@ -87,11 +85,11 @@ function App() {
               </div>
 
               <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                Führerschein machen – <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">gut, schnell, easy</span>
+                WIR MACHEN DIE <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">EIFEL MOBIL</span>
               </h2>
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Bei Fahrschule Jacobs bringen wir dich sicher und entspannt zum Führerschein. Mit 5 Standorten im Kreis Düren und über 18.976 erfolgreichen Fahrschülern.
+                Unsere ausgebildeten und kompetenten Fahrlehrer unterrichten euch in Theorie und Praxis und zeigen euch das richtige Verhalten im Straßenverkehr. Aktuellste Lernmethoden und Fahrzeuge bereiten euch professionell auf Fahrvergnügen und Mobilität vor.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
@@ -186,9 +184,9 @@ function App() {
       <section id="filialen" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Unsere Filialen</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Die Standorte</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              5 Standorte im Kreis Düren – immer in deiner Nähe
+              Finde uns hier: Schmidtheim und Schleiden / Gemünd
             </p>
           </div>
 
@@ -516,7 +514,7 @@ function App() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Telefon</h4>
-                      <p className="text-gray-600">Rufe deine nächste Filiale an</p>
+                      <p className="text-gray-600">Ben: 0170 2020617<br />Petra: 0171 1568812</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -525,7 +523,7 @@ function App() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">E-Mail</h4>
-                      <p className="text-gray-600">info@fahrschule-jacobs.de</p>
+                      <p className="text-gray-600">fahrschule@uni-drive.de</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -552,7 +550,7 @@ function App() {
                     <Facebook className="w-6 h-6" />
                   </a>
                   <a
-                    href="https://www.instagram.com/fahrschule_jacobs"
+                    href="https://www.instagram.com/unidrive_die_fahrschule"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-xl hover:shadow-xl transform hover:scale-110 transition-all duration-200"
@@ -593,32 +591,31 @@ function App() {
                   <Car className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Fahrschule Jacobs</h3>
-                  <p className="text-sm text-gray-400">Seit 1987</p>
+                  <h3 className="font-bold text-lg">Uni Drive</h3>
+                  <p className="text-sm text-gray-400">Die Fahrschule</p>
                 </div>
               </div>
               <p className="text-gray-400 text-sm">
-                Deine Fahrschule im Kreis Düren – gut, schnell, easy zum Führerschein.
+                Wir machen die Eifel mobil – professionelle Fahrausbildung in Theorie und Praxis.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Navigation</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#theorie" className="hover:text-orange-500 transition-colors">Theorie & Zeiten</a></li>
-                <li><a href="#filialen" className="hover:text-orange-500 transition-colors">Filialen</a></li>
-                <li><a href="#team" className="hover:text-orange-500 transition-colors">Team</a></li>
-                <li><a href="#leistungen" className="hover:text-orange-500 transition-colors">Leistungen</a></li>
+                <li><a href="#start" className="hover:text-orange-500 transition-colors">START</a></li>
+                <li><a href="#fahrschule" className="hover:text-orange-500 transition-colors">FAHRSCHULE</a></li>
+                <li><a href="#weiterbildungen" className="hover:text-orange-500 transition-colors">WEITERBILDUNGEN</a></li>
+                <li><a href="#anmeldung" className="hover:text-orange-500 transition-colors">ANMELDUNG</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#bewertungen" className="hover:text-orange-500 transition-colors">Bewertungen</a></li>
-                <li><a href="#gaestebuch" className="hover:text-orange-500 transition-colors">Gästebuch</a></li>
-                <li><a href="#mpu" className="hover:text-orange-500 transition-colors">MPU-Vorbereitung</a></li>
-                <li><a href="#erstehilfe" className="hover:text-orange-500 transition-colors">Erste Hilfe Kurs</a></li>
+                <li><a href="#fuhrpark" className="hover:text-orange-500 transition-colors">FUHRPARK</a></li>
+                <li><a href="#shop" className="hover:text-orange-500 transition-colors">SHOP</a></li>
+                <li><a href="#impressum" className="hover:text-orange-500 transition-colors">IMPRESSUM</a></li>
               </ul>
             </div>
 
@@ -626,7 +623,7 @@ function App() {
               <h4 className="font-semibold mb-4">Folge uns</h4>
               <div className="flex space-x-3 mb-4">
                 <a
-                  href="https://www.facebook.com/fahrschule.jacobs"
+                  href="https://www.facebook.com/UniDrive-Die-Fahrschule"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white/10 p-2 rounded-lg hover:bg-orange-500 transition-colors"
@@ -646,10 +643,9 @@ function App() {
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>© 2024 Fahrschule Jacobs. Alle Rechte vorbehalten.</p>
+            <p>© Uni Drive - Die Fahrschule</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#impressum" className="hover:text-orange-500 transition-colors">Impressum</a>
-              <a href="#datenschutz" className="hover:text-orange-500 transition-colors">Datenschutz</a>
             </div>
           </div>
         </div>
